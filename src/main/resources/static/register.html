@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Finance Manager - Register</title>
+
+    <link rel="stylesheet"
+          href="/css/style.css">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- Header -->
+
+    <header class="auth-header">
+
+        <h1>Finance Manager</h1>
+
+    </header>
+
+
+    <!-- Register Section -->
+
+    <main class="auth-container">
+
+        <div class="auth-card">
+
+            <h2>Create Account</h2>
+
+            <p class="auth-subtitle">
+                Create your account to start managing your finances.
+            </p>
+
+
+            <form id="registerForm">
+
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                >
+                    Create Account
+                </button>
+
+
+            </form>
+
+
+            <p id="message"
+               class="form-message">
+            </p>
+
+
+            <div class="auth-link">
+
+                Already have an account?
+
+                <a href="/login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        document.getElementById("registerForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById("name").value;
+
+                const email =
+                    document.getElementById("email").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+                const phone =
+                    document.getElementById("phone").value;
+
+
+                try {
+
+                    const response = await fetch("/users", {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            name: name,
+                            email: email,
+                            password: password,
+                            phone: phone
+
+                        })
+
+                    });
+
+
+                    const data = await response.json();
+
+
+                    if (response.ok) {
+
+                        document.getElementById("message")
+                            .textContent =
+                            "Registration successful! Please login.";
+
+                        document.getElementById("message")
+                            .className =
+                            "form-message success";
+
+
+                        document.getElementById("registerForm")
+                            .reset();
+
+
+                    } else {
+
+
+                        if (response.status === 409) {
+
+                            document.getElementById("message")
+                                .textContent =
+                                data.error ||
+                                "Email already registered.";
+
+                        } else if (response.status === 400) {
+
+                            const errors =
+                                Object.values(data);
+
+                            document.getElementById("message")
+                                .textContent =
+                                errors.join(", ");
+
+                        } else {
+
+                            document.getElementById("message")
+                                .textContent =
+                                data.error ||
+                                "Registration failed.";
+
+                        }
+
+
+                        document.getElementById("message")
+                            .className =
+                            "form-message error";
+
+                    }
+
+
+                } catch (error) {
+
+                    document.getElementById("message")
+                        .textContent =
+                        "Unable to connect to server.";
+
+                    document.getElementById("message")
+                        .className =
+                        "form-message error";
+
+                }
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>

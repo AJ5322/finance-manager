@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finance Manager</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="auth-page">
+
+<header class="auth-header">
+    <h1>Finance Manager</h1>
+</header>
+
+<main class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Manage Your Finances</h2>
+
+        <p class="auth-subtitle">
+            Track your income, expenses, budgets and financial balance.
+        </p>
+
+        <div class="home-buttons" id="loggedOutButtons">
+
+            <a href="/login.html" class="home-button">
+                Login
+            </a>
+
+            <a href="/register.html" class="home-button secondary">
+                Create Account
+            </a>
+
+        </div>
+
+        <div class="home-buttons" id="loggedInButtons" style="display: none;">
+
+            <a href="/dashboard.html" class="home-button">
+                Go to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+function checkHomeLogin() {
+
+    const token = localStorage.getItem("token");
+
+    const loggedOutButtons =
+        document.getElementById("loggedOutButtons");
+
+    const loggedInButtons =
+        document.getElementById("loggedInButtons");
+
+    if (token) {
+
+        loggedOutButtons.style.display = "none";
+        loggedInButtons.style.display = "block";
+
+    } else {
+
+        loggedOutButtons.style.display = "block";
+        loggedInButtons.style.display = "none";
+
+    }
+}
+
+checkHomeLogin();
+
+</script>
+
+</body>
+
+</html>
