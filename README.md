@@ -172,6 +172,7 @@ finance-manager
 └── README.md
 
 
+
 ## Screenshots
 
 ### Login Page
@@ -191,3 +192,4 @@ finance-manager
 
 ### Profile
 ![Profile](screenshots/profile.png)
+
