@@ -192,4 +192,3 @@ finance-manager
 
 ### Profile
 ![Profile](screenshots/profile.png)
-
