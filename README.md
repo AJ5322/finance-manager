@@ -170,3 +170,24 @@ finance-manager
 ├── .gitignore
 ├── pom.xml
 └── README.md
+
+
+## Screenshots
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Register Page
+![Register Page](screenshots/register.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Transactions
+![Transactions](screenshots/transactions.png)
+
+### Budgets
+![Budgets](screenshots/budgets.png)
+
+### Profile
+![Profile](screenshots/profile.png)
