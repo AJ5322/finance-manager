@@ -171,7 +171,7 @@ finance-manager
 ├── pom.xml
 └── README.md
 
-</>markdown
+
 
 ## Screenshots
 
